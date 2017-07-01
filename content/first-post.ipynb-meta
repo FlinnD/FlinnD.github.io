@@ -1,7 +1,7 @@
 Title: Running PCA on Wildfire Data
-Slug: PCA-Wildfire
-Date: 2016-06-30 22:04
-Category: posts
+Slug: PCA_Wildfire
+Date: 2017-06-30 22:04
+Category: Data Analysis
 Tags: Python, Machine learning, SVM
 author: Flinn Dolman
 Summary: Running PCA with two components on wildfire data.

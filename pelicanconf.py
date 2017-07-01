@@ -5,10 +5,11 @@ from __future__ import unicode_literals
 AUTHOR = u'Flinn Dolman'
 SITENAME = u'Toucan Machine Learning Blog'
 SITEURL = 'http://FlinnD.github.io'
+#SITEURL = ''
 IGNORE_FILES = ['.ipynb_checkpoints']
 PATH = 'content'
-THEME = "./themes/new-bootstrap2"
-#THEME = "./themes/minimalX"
+#THEME = "./themes/w3-personal-blog"
+THEME = "./themes/elegant"
 TIMEZONE = 'GB'
 
 DEFAULT_LANG = u'en'
@@ -26,9 +27,11 @@ LINKS = (('Pelican', 'http://getpelican.com/'),
          ('Jinja2', 'http://jinja.pocoo.org/'),
          )
 
+
 # Social widget
 SOCIAL = (
-          ('Social Link Here!', '#'),)
+          ('Linkedin', 'http://www.linkedin.com/in/flinn-dolman-277564145/'),
+          ('GitHub', 'http://www.github.com/FlinnD'), )
 
 DEFAULT_PAGINATION = 10
 

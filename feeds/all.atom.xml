@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Toucan Machine Learning Blog</title><link href="http://FlinnD.github.io/" rel="alternate"></link><link href="http://FlinnD.github.io/feeds/all.atom.xml" rel="self"></link><id>http://FlinnD.github.io/</id><updated>2016-06-30T22:04:00+01:00</updated><entry><title>Running PCA on Wildfire Data</title><link href="http://FlinnD.github.io/PCA-Wildfire.html" rel="alternate"></link><published>2016-06-30T22:04:00+01:00</published><updated>2016-06-30T22:04:00+01:00</updated><author><name>Flinn Dolman</name></author><id>tag:FlinnD.github.io,2016-06-30:PCA-Wildfire.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Toucan Machine Learning Blog</title><link href="http://FlinnD.github.io/" rel="alternate"></link><link href="http://FlinnD.github.io/feeds/all.atom.xml" rel="self"></link><id>http://FlinnD.github.io/</id><updated>2017-06-30T22:04:00+01:00</updated><entry><title>Running PCA on Wildfire Data</title><link href="http://FlinnD.github.io/PCA_Wildfire.html" rel="alternate"></link><published>2017-06-30T22:04:00+01:00</published><updated>2017-06-30T22:04:00+01:00</updated><author><name>Flinn Dolman</name></author><id>tag:FlinnD.github.io,2017-06-30:PCA_Wildfire.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *
@@ -975,7 +975,8 @@ h6:hover .anchor-link {
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;Import necessary files&lt;/p&gt;
+&lt;p&gt;As part of a project to predict wildfires I partook in recently I was tasked with performing some basic data analysis on a csv file compiled from scraped weather data. This post details how I took the csv and performed Principal Component Analysis on it.&lt;/p&gt;
+&lt;p&gt;The first step was to import necessary files. In this case I needed an efficient way to perform PCA and plot the resulting graph. SciKit-Learn and Matplotlib both lend themselves well to this. In addition pandas and numpy are both great resources for data manipulation so these were imported as well.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1002,7 +1003,7 @@ h6:hover .anchor-link {
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;Next we will load in the data and split it into train/test samples.&lt;/p&gt;
+&lt;p&gt;Next the data was loaded into a pandas dataframe and split it into train/test samples. Whilst not essential for PCA this splitting was applied for the purpose of training and testing models later on. I will perhaps write another post detailing the structure of Balanced.csv. For the purpose of understanding this post all the reader needs to know is that it contains 8 meaningful features such as avg Temperature, humidity etc. The final column contains boolean values giving whether or not there was a wildfire on a day corresponding to the values of the 8 features. These were treated as class labels. 0 for no wildfire and 1 for a wildfire.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1036,7 +1037,7 @@ h6:hover .anchor-link {
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;Now we standardise the data.&lt;/p&gt;
+&lt;p&gt;The data was then standardised. Most models do not perform well on non-standardised data and since it was intended to train and test a model on this data later on it was important to standardise now. It is important to standardise both train and test data under the same scale to avoid inaccurate scores during the testing phase.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1058,7 +1059,7 @@ h6:hover .anchor-link {
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;With the data now standardised we can run PCA:&lt;/p&gt;
+&lt;p&gt;At this point PCA was applied to the training data:&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1070,7 +1071,6 @@ h6:hover .anchor-link {
 &lt;div class=" highlight hl-ipython2"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;#Perform PCA on standardised variables&lt;/span&gt;
 &lt;span class="n"&gt;pca_std&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;PCA&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n_components&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X_train_std&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;X_train_std&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pca_std&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;transform&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X_train_std&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;X_test_std&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pca_std&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;transform&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X_test_std&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1080,7 +1080,7 @@ h6:hover .anchor-link {
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;We have opted to generate two eigenvectors. Lets see how this looks.&lt;/p&gt;
+&lt;p&gt;I opted to generate two eigenvectors since the aim in applying PCA was to try and catch a general trend in the data. Lets see how this looks.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -2256,7 +2256,8 @@ imjdkrYAAAAASUVORK5CYII=
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;Fin.&lt;/p&gt;
+&lt;p&gt;Remembering that class 1 is given by wildfires and class 0 no wildfires we can see that as we move down the y-axis wildfires begin to cluster together. This is promising as it appears in the very least that wildfires dont occur randomly (as one would expect!) However it's not all good news. The dataset seems to contain many anomalous values. Clearly these values would have a negative impact on the accuracy of any model so developing a method of reducing these anomalous values became the next focus. I will discuss my approach in the next post!&lt;/p&gt;
+&lt;p&gt;Thanks for reading!&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
